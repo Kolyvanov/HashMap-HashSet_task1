@@ -11,7 +11,35 @@ public class Main {
         Map<Character, Integer> map = new HashMap<>();
         String lowerText = text.toLowerCase(); //приводим текст к нижнему регистру
         String text1 = lowerText.replaceAll("[,. ]", ""); // выкидываем из текста запятые, точки и пробелы
-        
 
+        //заполняем мапу парами (символ-частота символа)
+        for (int i = 0; i < text1.length(); i ++) {
+           char c = text1.charAt(i);
+           if (map.containsKey(c)) {
+               int value = map.get(c);
+               value ++;
+               map.put(c, value);
+           } else {
+               map.put(c, 1);
+           }
+        }
+
+        //определяем самый редкий и самый частый символы в строке
+        int max = 0;
+        int min = Integer.MAX_VALUE;
+        char charMax;
+        char charMin;
+
+        for (Character k : map.keySet()) {
+            if (map.get(k) > max) {
+                max = map.get(k);
+                charMax = k;
+            }
+            if(map.get(k) < min) {
+                min = map.get(k);
+                charMin = k;
+            }
+        }
+        
     }
 }
